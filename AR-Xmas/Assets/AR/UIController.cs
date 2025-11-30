@@ -4,16 +4,30 @@ using UnityEngine;
 
 public class UIController : MonoBehaviour
 {
-    // Called by the UI Button OnClick
     public void OnLightsButtonPressed()
     {
-        if (TreeModelSwitcher.Instance != null)
+        if (TreeVariantSwitcher.Instance != null)
         {
-            TreeModelSwitcher.Instance.ToggleModels();
+            TreeVariantSwitcher.Instance.ToggleLights();
         }
         else
         {
-            Debug.LogWarning("OnLightsButtonPressed: TreeModelSwitcher.Instance is null. " +
+            Debug.LogWarning("OnLightsButtonPressed: TreeVariantSwitcher.Instance is null. " +
+                             "Is the marker in view and has the tree prefab spawned?");
+        }
+    }
+
+    public void OnVariantSliderChanged(float value)
+    {
+        Debug.Log("UIController.OnVariantSliderChanged: " + value);
+
+        if (TreeVariantSwitcher.Instance != null)
+        {
+            TreeVariantSwitcher.Instance.SetVariantBySlider(value);
+        }
+        else
+        {
+            Debug.LogWarning("OnVariantSliderChanged: TreeVariantSwitcher.Instance is null. " +
                              "Is the marker in view and has the tree prefab spawned?");
         }
     }
